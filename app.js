@@ -14,18 +14,32 @@ form.addEventListener('submit',(e)=>{
 
 });
 
-function timeConverter(UNIX_timestamp){
-    var a = new Date(UNIX_timestamp * 1000);
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var year = a.getFullYear();
-    var month = months[a.getMonth()];
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-    return time;
-  }
+// function timeConverter(UNIX_timestamp){
+//     var a = new Date(UNIX_timestamp * 1000);
+//     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+//     var year = a.getFullYear();
+//     var month = months[a.getMonth()];
+//     var date = a.getDate();
+//     var hour = a.getHours();
+//     var min = a.getMinutes();
+//     var sec = a.getSeconds();
+//     var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+//     return time;
+//   }
+
+
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+var d = new Date();
+var monthName=monthNames[d.getMonth()];
+
+  var currentdate = new Date();
+var datetime = currentdate.getDay() + " " + monthName
++ " " + currentdate.getFullYear() + "   " ;
+
+var time=currentdate.toLocaleString();
 
 const fetchPrice= async(ctype) =>{
     const r = await axios.get(`https://api.coinstats.app/public/v1/coins/${ctype}?currency=USD`);
@@ -60,6 +74,13 @@ const fetchPrice= async(ctype) =>{
      </td>
      <td>${change}</td>
  </tr>
+ <tr style=" background-color:white; color:black;font-weight:bold">
+     <td>
+         Current Date & Time
+     </td>
+     <td>${time}</td>
+ </tr>
+ 
  `
 
     upd = setTimeout(()=>fetchPrice(ctype),10000);
