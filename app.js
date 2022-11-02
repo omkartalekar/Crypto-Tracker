@@ -84,5 +84,4 @@ const fetchPrice= async(ctype) =>{
  `
 
     upd = setTimeout(()=>fetchPrice(ctype),10000);
-
 }
